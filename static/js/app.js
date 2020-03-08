@@ -28,12 +28,12 @@ d3.json("samples.json").then(data => {
 
         // slice top 10 OTU values
         var otuSamples = subjectSamples[subject]["sample_values"].slice(0,10);
- 
+        
         //Create Bar Chart
         var dataBar = {
             type: 'bar',
-            x: otuSamples,
-            y: otuIds,
+            x: otuSamples.reverse(),
+            y: otuIds.reverse(),
             orientation: 'h'
           };
         
@@ -118,7 +118,9 @@ d3.json("samples.json").then(data => {
         var traceBar = [dataBar]
         
           var layoutBar = {
-            xaxis: {title: "Sample Values"},
+            xaxis: {title: "Sample Values",
+                    tickmode: 'array',
+                    ticktext: otuIds},
             yaxis: {title: "OTU ID"},
             height: 700,
             width: 650
